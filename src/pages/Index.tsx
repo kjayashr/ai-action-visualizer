@@ -1,10 +1,10 @@
 
-import { OnboardingSteps } from "@/components/OnboardingSteps";
+import { MainTabs } from "@/components/MainTabs";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <OnboardingSteps />
+    <div className="min-h-screen bg-gray-50 py-8">
+      <MainTabs />
     </div>
   );
 };

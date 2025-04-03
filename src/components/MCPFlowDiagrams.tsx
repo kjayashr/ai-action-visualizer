@@ -1,21 +1,9 @@
-import React, { useState } from "react";
-import { ExternalLink, ArrowRight, TerminalSquare, ChevronDown, ChevronUp, Copy } from "lucide-react";
+
+import React from "react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useToast } from "@/hooks/use-toast";
 
 export const MCPFlowDiagrams = () => {
-  const [showLogs, setShowLogs] = useState(false);
-  const { toast } = useToast();
-
-  const handleCopyClick = () => {
-    navigator.clipboard.writeText("Waiting for your request...\n\nPlease send a command (e.g., 'send message to Slack') from your client (Cursor, Claude, or Terminal). Once your request is received, it will show up here.");
-    toast({
-      title: "Copied to clipboard",
-      description: "The logs have been copied to your clipboard.",
-      duration: 3000,
-    });
-  };
-
   return (
     <div className="space-y-6">
       <h3 className="text-lg font-semibold mb-2">How MCP works with your actions</h3>
@@ -90,45 +78,6 @@ export const MCPFlowDiagrams = () => {
             example="Create a custom workflow that processes data through multiple systems"
           />
         </div>
-      </div>
-
-      {/* MCP Logs Section */}
-      <div className="rounded-lg border border-gray-200 p-4">
-        <div 
-          className="flex items-center justify-between cursor-pointer"
-          onClick={() => setShowLogs(!showLogs)}
-        >
-          <div className="flex items-center">
-            <TerminalSquare className="h-5 w-5 text-gray-700 mr-2" />
-            <h4 className="font-medium text-gray-800">MCP Runtime Logs</h4>
-          </div>
-          {showLogs ? 
-            <ChevronUp className="h-5 w-5 text-gray-500" /> : 
-            <ChevronDown className="h-5 w-5 text-gray-500" />
-          }
-        </div>
-        
-        {showLogs && (
-          <div className="mt-3 animate-in fade-in duration-300">
-            <div className="relative">
-              <div className="bg-gray-900 text-gray-100 p-4 rounded-md font-mono text-sm whitespace-pre-wrap">
-                Waiting for your request...
-
-                Please send a command (e.g., 'send message to Slack') from your client (Cursor, Claude, or Terminal). Once your request is received, it will show up here.
-              </div>
-              <button
-                onClick={handleCopyClick}
-                className="absolute top-2 right-2 p-1.5 bg-gray-800 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white transition-colors"
-                aria-label="Copy logs"
-              >
-                <Copy className="h-4 w-4" />
-              </button>
-            </div>
-            <p className="text-sm text-gray-600 mt-2">
-              These logs show the real-time communication between your AI client and the MCP host. Send a command from your AI to see the logs update.
-            </p>
-          </div>
-        )}
       </div>
 
       {/* Documentation Links */}
