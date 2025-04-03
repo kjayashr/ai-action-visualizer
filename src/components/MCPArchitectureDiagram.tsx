@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ArrowDown, ArrowUp, Database, Globe, Laptop, Server } from "lucide-react";
+import { ArrowDown, ArrowUp, Database, Globe, Laptop, Server, Network, Plug } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const MCPArchitectureDiagram = () => {
@@ -27,20 +27,20 @@ export const MCPArchitectureDiagram = () => {
           </div>
         </div>
         
-        {/* MCP Server */}
+        {/* Fastn with MCP Server */}
         <div className="flex flex-col items-center mb-8">
           <div className="px-6 py-3 border-2 border-purple-500 rounded-lg bg-purple-50 text-center mb-2 w-64">
             <div className="flex items-center justify-center">
               <Server className="mr-2 text-purple-600" size={20} />
-              <span className="font-semibold text-lg">MCP Server</span>
+              <span className="font-semibold text-lg">Fastn with MCP Server</span>
             </div>
           </div>
           
-          {/* Protocol Arrow */}
+          {/* Fastn to Connectors */}
           <div className="flex justify-center items-center h-16">
             <div className="flex flex-col items-center">
               <ArrowDown className="text-purple-600" size={20} />
-              <div className="text-purple-700 font-medium text-sm">MCP Protocol</div>
+              <div className="text-purple-700 font-medium text-sm">Fastn Connects</div>
               <ArrowUp className="text-purple-600 mt-1" size={20} />
             </div>
           </div>
@@ -50,7 +50,7 @@ export const MCPArchitectureDiagram = () => {
         <div className="flex flex-col items-center mb-8">
           <div className="px-6 py-3 border-2 border-green-500 rounded-lg bg-green-50 text-center mb-2 w-64">
             <div className="flex items-center justify-center">
-              <Database className="mr-2 text-green-600" size={20} />
+              <Plug className="mr-2 text-green-600" size={20} />
               <span className="font-semibold text-lg">Connectors</span>
             </div>
           </div>
@@ -101,19 +101,19 @@ export const MCPArchitectureDiagram = () => {
             <div className="h-5 w-5 rounded-full bg-purple-100 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">
               <span className="text-xs font-medium">2</span>
             </div>
-            <span><span className="font-medium">MCP Server:</span> Lightweight programs that expose specific capabilities through the standardized Model Context Protocol</span>
+            <span><span className="font-medium">Fastn with MCP Server:</span> Fastn provides the MCP Server which exposes specific capabilities through the standardized Model Context Protocol</span>
           </li>
           <li className="flex items-start">
             <div className="h-5 w-5 rounded-full bg-green-100 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">
               <span className="text-xs font-medium">3</span>
             </div>
-            <span><span className="font-medium">Connectors:</span> Integration points that connect MCP servers to data sources and services</span>
+            <span><span className="font-medium">Connectors:</span> Integration points that Fastn connects to for accessing data sources and services</span>
           </li>
           <li className="flex items-start">
             <div className="h-5 w-5 rounded-full bg-gray-100 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">
               <span className="text-xs font-medium">4</span>
             </div>
-            <span><span className="font-medium">Services:</span> External systems available over the internet or local data sources that MCP servers can securely access</span>
+            <span><span className="font-medium">Services:</span> External systems available over the internet or local data sources that Fastn can securely access through connectors</span>
           </li>
         </ul>
       </div>
