@@ -80,10 +80,10 @@ export const MCPArchitectureDiagram = () => {
           <div className="text-sm font-medium text-blue-600">Internet</div>
         </div>
         
-        {/* Local Indicator */}
+        {/* Local Indicator - Changed from "Your Computer" to "Fastn MCP Host" */}
         <div className="absolute top-1/3 right-4 flex flex-col items-center">
           <Laptop className="text-gray-600" size={24} />
-          <div className="text-sm font-medium text-gray-700">Your Computer</div>
+          <div className="text-sm font-medium text-gray-700">Fastn MCP Host</div>
         </div>
       </div>
       
