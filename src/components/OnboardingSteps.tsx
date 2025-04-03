@@ -110,7 +110,7 @@ export const OnboardingSteps = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   <ConnectorCard
                     name="Google Docs"
-                    icon="/lovable-uploads/822e8a9a-9765-4da6-9e0b-cb09e516e423.png"
+                    icon="google-docs"
                     description="Allows users to create, edit, and share documents through Google Docs integration."
                     isSelected={selectedConnectors.includes("google-docs")}
                     onToggle={() => toggleConnector("google-docs")}
@@ -118,35 +118,35 @@ export const OnboardingSteps = () => {
                   />
                   <ConnectorCard
                     name="Google Sheets"
-                    icon="/lovable-uploads/f29ff4ec-5fd2-49c5-9369-cc08f800f769.png"
+                    icon="google-sheets"
                     description="Allows dynamic spreadsheet data management and collaboration by integrating external applications with Google Sheets."
                     isSelected={selectedConnectors.includes("google-sheets")}
                     onToggle={() => toggleConnector("google-sheets")}
                   />
                   <ConnectorCard
                     name="HubSpot"
-                    icon="/lovable-uploads/e6d81133-581b-4e13-96e4-1a8b9356fcc2.png"
+                    icon="hubspot"
                     description="Integrates HubSpot CRM data for marketing automation, sales tracking, and customer management."
                     isSelected={selectedConnectors.includes("hubspot")}
                     onToggle={() => toggleConnector("hubspot")}
                   />
                   <ConnectorCard
                     name="Notion"
-                    icon="https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg"
+                    icon="notion"
                     description="Provides tools for collaboration, note-taking, and project management within Notion."
                     isSelected={selectedConnectors.includes("notion")}
                     onToggle={() => toggleConnector("notion")}
                   />
                   <ConnectorCard
                     name="Salesforce"
-                    icon="https://www.salesforce.com/news/wp-content/uploads/sites/3/2021/05/Salesforce-logo.jpg"
+                    icon="salesforce"
                     description="Provides access to Salesforce CRM data for sales automation, customer insights, and workflow management."
                     isSelected={selectedConnectors.includes("salesforce")}
                     onToggle={() => toggleConnector("salesforce")}
                   />
                   <ConnectorCard
                     name="Zoho"
-                    icon="https://www.zohowebstatic.com/sites/zweb/images/productlogos/crm-logo.svg"
+                    icon="zoho"
                     description="Connects to Zoho for managing business operations, including CRM and productivity tools."
                     isSelected={selectedConnectors.includes("zoho")}
                     onToggle={() => toggleConnector("zoho")}

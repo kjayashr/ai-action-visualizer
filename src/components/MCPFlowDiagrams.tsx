@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ExternalLink, ArrowRight, FileText, Table, Users, Code, Server } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const MCPFlowDiagrams = () => {
@@ -52,28 +52,28 @@ export const MCPFlowDiagrams = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <ExampleCard
             title="Document Management"
-            icon="/lovable-uploads/822e8a9a-9765-4da6-9e0b-cb09e516e423.png"
+            icon="document"
             description="Ask your AI to update a Google Doc with meeting notes"
             example="Update our quarterly goals document with the summary from today's meeting"
           />
           
           <ExampleCard
             title="Data Analysis"
-            icon="/lovable-uploads/f29ff4ec-5fd2-49c5-9369-cc08f800f769.png"
+            icon="spreadsheet"
             description="Request your AI to analyze data from Google Sheets"
             example="Create a chart from our sales data in the Q2 spreadsheet"
           />
           
           <ExampleCard
             title="CRM Management"
-            icon="/lovable-uploads/e6d81133-581b-4e13-96e4-1a8b9356fcc2.png"
+            icon="crm"
             description="Ask your AI to update HubSpot records"
             example="Add a note to John Smith's contact in HubSpot about our call today"
           />
           
           <ExampleCard
             title="Custom Actions"
-            icon="/lovable-uploads/0676fc55-1d5f-47ae-9b61-272e7079437e.png"
+            icon="code"
             description="Build your own custom actions with Fastn Flow MCP"
             example="Create a custom workflow that processes data through multiple systems"
           />
@@ -163,17 +163,32 @@ const FlowArrow = () => {
 
 interface ExampleCardProps {
   title: string;
-  icon: string;
+  icon: "document" | "spreadsheet" | "crm" | "code";
   description: string;
   example: string;
 }
 
 const ExampleCard = ({ title, icon, description, example }: ExampleCardProps) => {
+  const getIconComponent = () => {
+    switch (icon) {
+      case "document":
+        return <FileText className="h-6 w-6 text-blue-600" />;
+      case "spreadsheet":
+        return <Table className="h-6 w-6 text-green-600" />;
+      case "crm":
+        return <Users className="h-6 w-6 text-orange-600" />;
+      case "code":
+        return <Code className="h-6 w-6 text-purple-600" />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="border rounded-lg p-4 bg-white">
       <div className="flex items-center mb-2">
         <div className="h-10 w-10 rounded bg-gray-100 flex items-center justify-center mr-3">
-          <img src={icon} alt={title} className="h-6 w-6" />
+          {getIconComponent()}
         </div>
         <h5 className="font-medium">{title}</h5>
       </div>
