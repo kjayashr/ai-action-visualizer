@@ -13,6 +13,7 @@ export const OnboardingSteps = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isStep1Expanded, setIsStep1Expanded] = useState(true);
   const [isStep2Expanded, setIsStep2Expanded] = useState(false);
+  const [isStep3Expanded, setIsStep3Expanded] = useState(false);
   const [selectedConnectors, setSelectedConnectors] = useState<string[]>([]);
   const [progress, setProgress] = useState(33);
   
@@ -21,6 +22,8 @@ export const OnboardingSteps = () => {
       setIsStep1Expanded(!isStep1Expanded);
     } else if (step === 2) {
       setIsStep2Expanded(!isStep2Expanded);
+    } else if (step === 3 && currentStep === 3) {
+      setIsStep3Expanded(!isStep3Expanded);
     }
   };
 
@@ -31,8 +34,10 @@ export const OnboardingSteps = () => {
       setIsStep2Expanded(true);
       setProgress(66);
     } else if (currentStep === 2) {
+      setCurrentStep(3);
+      setIsStep2Expanded(false);
+      setIsStep3Expanded(true);
       setProgress(100);
-      // Handle completion
     }
   };
 
@@ -67,7 +72,7 @@ export const OnboardingSteps = () => {
             />
             
             {isStep1Expanded && (
-              <div className="mt-4 space-y-6 animate-fade-in">
+              <div className="mt-4 space-y-6 animate-in fade-in duration-300">
                 <div className="mb-4">
                   <div className="relative">
                     <input
@@ -172,7 +177,7 @@ export const OnboardingSteps = () => {
             />
             
             {isStep2Expanded && (
-              <div className="mt-4 space-y-6 animate-fade-in">
+              <div className="mt-4 space-y-6 animate-in fade-in duration-300">
                 <MCPConnectionForm onContinue={handleContinue} />
               </div>
             )}
@@ -185,9 +190,35 @@ export const OnboardingSteps = () => {
               title="Done, What next?"
               isCompleted={false}
               isActive={currentStep === 3}
-              isExpanded={currentStep === 3}
-              onClick={() => {}}
+              isExpanded={isStep3Expanded}
+              onClick={() => handleStepClick(3)}
             />
+            
+            {isStep3Expanded && (
+              <div className="mt-4 space-y-6 animate-in fade-in duration-300">
+                <Card className="p-5 border border-green-200 bg-green-50">
+                  <div className="flex items-center mb-4">
+                    <div className="bg-green-100 p-2 rounded-full">
+                      <Check className="h-6 w-6 text-green-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold ml-3 text-green-800">Congratulations!</h3>
+                  </div>
+                  <p className="text-gray-700 mb-4">
+                    You've successfully set up your AI actions environment. Your AI can now access the 
+                    connectors you've chosen through your MCP client.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <Button className="bg-green-600 hover:bg-green-700">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      View Documentation
+                    </Button>
+                    <Button variant="outline">
+                      Try an Example
+                    </Button>
+                  </div>
+                </Card>
+              </div>
+            )}
           </div>
         </div>
         
@@ -253,6 +284,19 @@ export const OnboardingSteps = () => {
                   isCompleted={false}
                   isActive={currentStep === 3}
                 />
+                
+                {currentStep >= 3 && (
+                  <div className="pl-8 space-y-2 text-sm text-gray-600">
+                    <p className="flex items-center">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-2"></span>
+                      Explore documentation for advanced usage.
+                    </p>
+                    <p className="flex items-center">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-2"></span>
+                      Try example commands to test your setup.
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

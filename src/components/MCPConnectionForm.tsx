@@ -3,16 +3,18 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import { Copy, Clipboard, ExternalLink, Check } from "lucide-react";
+import { Copy, Clipboard, ExternalLink, Check, Info } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
+import { MCPArchitectureDiagram } from "./MCPArchitectureDiagram";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface MCPConnectionFormProps {
   onContinue: () => void;
 }
 
 export const MCPConnectionForm = ({ onContinue }: MCPConnectionFormProps) => {
-  const [selectedTab, setSelectedTab] = useState("sse");
+  const [selectedTab, setSelectedTab] = useState("overview");
   const [spaceIDCopied, setSpaceIDCopied] = useState(false);
   const [apiKeyCopied, setAPIKeyCopied] = useState(false);
   const [commandCopied, setCommandCopied] = useState(false);
@@ -23,9 +25,11 @@ export const MCPConnectionForm = ({ onContinue }: MCPConnectionFormProps) => {
     if (type === 'spaceID') {
       setSpaceIDCopied(true);
       setTimeout(() => setSpaceIDCopied(false), 2000);
+      toast.success("Space ID copied to clipboard!");
     } else if (type === 'apiKey') {
       setAPIKeyCopied(true);
       setTimeout(() => setAPIKeyCopied(false), 2000);
+      toast.success("API Key copied to clipboard!");
     } else if (type === 'command') {
       setCommandCopied(true);
       setTimeout(() => setCommandCopied(false), 2000);
@@ -52,10 +56,30 @@ export const MCPConnectionForm = ({ onContinue }: MCPConnectionFormProps) => {
   return (
     <div className="space-y-6">
       <Card className="p-5 border border-gray-200">
-        <h3 className="text-xl font-semibold mb-3">Connect your MCP clients: Cursor.ai | Claude.ai | Fastn AI action agent</h3>
+        <h3 className="text-xl font-semibold mb-3 flex items-center">
+          Connect your MCP clients
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="sm" className="h-8 w-8 p-0 ml-2">
+                  <Info className="h-4 w-4 text-blue-500" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="max-w-xs">MCP is an open protocol that standardizes how applications provide context to LLMs, like a USB-C port for AI applications.</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </h3>
         
-        <Tabs defaultValue="sse" className="w-full" onValueChange={setSelectedTab}>
+        <Tabs defaultValue="overview" className="w-full" onValueChange={setSelectedTab}>
           <TabsList className="mb-5 w-full justify-start bg-gray-100 p-1">
+            <TabsTrigger 
+              value="overview" 
+              className={selectedTab === "overview" ? "bg-white text-blue-600 shadow-sm font-medium" : "text-gray-600"}
+            >
+              Overview
+            </TabsTrigger>
             <TabsTrigger 
               value="sse" 
               className={selectedTab === "sse" ? "bg-white text-blue-600 shadow-sm font-medium" : "text-gray-600"}
@@ -75,6 +99,43 @@ export const MCPConnectionForm = ({ onContinue }: MCPConnectionFormProps) => {
               AI actions agent API
             </TabsTrigger>
           </TabsList>
+          
+          <TabsContent value="overview" className="space-y-5">
+            <div className="rounded-lg bg-blue-50 p-4 border border-blue-100 mb-6">
+              <h4 className="font-medium text-blue-800 mb-2">What is MCP?</h4>
+              <p className="text-gray-700">
+                MCP (Model Context Protocol) is an open protocol that standardizes how applications provide context to LLMs. 
+                Think of MCP like a USB-C port for AI applications, providing a standardized way to connect AI models to 
+                different data sources and tools.
+              </p>
+            </div>
+            
+            <MCPArchitectureDiagram />
+            
+            <div className="rounded-lg bg-indigo-50 p-4 border border-indigo-100">
+              <h4 className="font-medium text-indigo-800 mb-2">Why use MCP?</h4>
+              <ul className="space-y-2 ml-2">
+                <li className="flex items-start">
+                  <div className="h-5 w-5 rounded-full bg-indigo-100 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">
+                    <Check className="h-3 w-3 text-indigo-700" />
+                  </div>
+                  <span>Access to a growing list of pre-built integrations that your LLM can directly plug into</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="h-5 w-5 rounded-full bg-indigo-100 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">
+                    <Check className="h-3 w-3 text-indigo-700" />
+                  </div>
+                  <span>Flexibility to switch between LLM providers and vendors</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="h-5 w-5 rounded-full bg-indigo-100 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">
+                    <Check className="h-3 w-3 text-indigo-700" />
+                  </div>
+                  <span>Best practices for securing your data within your infrastructure</span>
+                </li>
+              </ul>
+            </div>
+          </TabsContent>
           
           <TabsContent value="sse" className="space-y-5">
             <div className="rounded-lg bg-gray-50 p-4 border border-gray-100">
@@ -158,6 +219,45 @@ export const MCPConnectionForm = ({ onContinue }: MCPConnectionFormProps) => {
                   <pre className="text-green-400 text-sm whitespace-pre-wrap font-mono">
                     {sampleCurlCommand}
                   </pre>
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="command" className="space-y-5">
+            <div className="rounded-lg bg-gray-50 p-4 border border-gray-100">
+              <p className="text-gray-700">
+                Use command line interfaces to interact with MCP servers and connect your applications.
+              </p>
+            </div>
+            
+            <div className="mt-4 space-y-4">
+              <h4 className="font-medium">Command Line Options:</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="border rounded-lg p-4 bg-white">
+                  <h5 className="font-medium mb-2 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 mr-2"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                    CLI Tool
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Use our dedicated CLI tool for simplified MCP server management
+                  </p>
+                  <Button variant="outline" size="sm" className="w-full">
+                    Install CLI
+                  </Button>
+                </div>
+                
+                <div className="border rounded-lg p-4 bg-white">
+                  <h5 className="font-medium mb-2 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-600 mr-2"><path d="M5 7l5 5-5 5"/><path d="M13 17h6"/></svg>
+                    Terminal Commands
+                  </h5>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Use standard terminal commands for advanced configuration
+                  </p>
+                  <Button variant="outline" size="sm" className="w-full">
+                    View Commands
+                  </Button>
                 </div>
               </div>
             </div>
