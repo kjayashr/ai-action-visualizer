@@ -1,4 +1,3 @@
-
 import { Check, ChevronDown, ChevronUp, Copy, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -8,6 +7,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Progress } from "@/components/ui/progress";
 import { ConnectorCard } from "./ConnectorCard";
 import { MCPConnectionForm } from "./MCPConnectionForm";
+import { MCPFlowDiagrams } from "./MCPFlowDiagrams";
 
 export const OnboardingSteps = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -217,6 +217,31 @@ export const OnboardingSteps = () => {
                     </Button>
                   </div>
                 </Card>
+                
+                <MCPFlowDiagrams />
+                
+                <Card className="p-5 border border-blue-200 bg-blue-50">
+                  <h3 className="text-lg font-semibold mb-3">Try it now!</h3>
+                  <p className="text-gray-700 mb-4">
+                    Send a command like these to your MCP-enabled AI assistant (Cursor, Claude, etc.):
+                  </p>
+                  <div className="space-y-3">
+                    <div className="bg-white p-3 rounded-md border border-blue-100">
+                      "Update our team project timeline in Google Docs"
+                    </div>
+                    <div className="bg-white p-3 rounded-md border border-blue-100">
+                      "Send a Slack message to the team about our progress"
+                    </div>
+                    <div className="bg-white p-3 rounded-md border border-blue-100">
+                      "Create a summary of our Q3 sales data from our spreadsheet"
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <Button className="bg-blue-600 hover:bg-blue-700">
+                      Build Custom Action
+                    </Button>
+                  </div>
+                </Card>
               </div>
             )}
           </div>
@@ -289,11 +314,15 @@ export const OnboardingSteps = () => {
                   <div className="pl-8 space-y-2 text-sm text-gray-600">
                     <p className="flex items-center">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-2"></span>
+                      Try example commands with your AI assistant.
+                    </p>
+                    <p className="flex items-center">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-2"></span>
                       Explore documentation for advanced usage.
                     </p>
                     <p className="flex items-center">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-2"></span>
-                      Try example commands to test your setup.
+                      Build custom actions for your specific needs.
                     </p>
                   </div>
                 )}
