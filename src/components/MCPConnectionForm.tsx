@@ -19,6 +19,13 @@ export const MCPConnectionForm = ({ onContinue }: MCPConnectionFormProps) => {
   const [apiKeyCopied, setAPIKeyCopied] = useState(false);
   const [commandCopied, setCommandCopied] = useState(false);
   
+  // Masked values for display
+  const maskedSpaceID = "XXXX-XXXX-XXXX-XXXX";
+  const realSpaceID = "25144b91-de4c-478d-92f0-9d7fa2c3ebf3"; // Used only for copy operation
+  
+  const maskedAPIKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+  const realAPIKey = "ddae0dcbe89f0a8289df61bea94ef3beb71c5e52"; // Used only for copy operation
+  
   const handleCopy = (text: string, type: 'spaceID' | 'apiKey' | 'command') => {
     navigator.clipboard.writeText(text);
     
@@ -38,16 +45,16 @@ export const MCPConnectionForm = ({ onContinue }: MCPConnectionFormProps) => {
   };
   
   const sampleCurlCommand = `curl --location 'https://live.fastn.ai/api/mcp/executeActionAgent' \\
---header 'x-fastn-api-key: ddae0dcbe89f0a8289df61bea94ef3beb71c5e52' \\
+--header 'x-fastn-api-key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' \\
 --header 'Content-Type: application/json' \\
---header 'x-fastn-space-id: 25144b91-de4c-478d-92f0-9d7fa2c3ebf3' \\
+--header 'x-fastn-space-id: XXXX-XXXX-XXXX-XXXX' \\
 --header 'x-fastn-space-tenantid;' \\
 --header 'stage: LIVE' \\
 --header 'x-fastn-custom-auth: true' \\
 --data '{
   "input": {
-    "clientId": "25144b91-de4c-478d-92f0-9d7fa2c3ebf3",
-    "userId": "e56d6d23-2992-45cc-924b-d50431b32026",
+    "clientId": "XXXX-XXXX-XXXX-XXXX",
+    "userId": "XXXX-XXXX-XXXX-XXXX",
     "prompt": "Send a Slack message",
     "env":"live.fastn.ai"
   }
@@ -275,7 +282,7 @@ export const MCPConnectionForm = ({ onContinue }: MCPConnectionFormProps) => {
               <div className="relative">
                 <input 
                   type="text" 
-                  value="25144b91-de4c-478d-92f0-9d7fa2c3ebf3" 
+                  value={maskedSpaceID} 
                   className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 pr-10"
                   readOnly
                 />
@@ -283,7 +290,7 @@ export const MCPConnectionForm = ({ onContinue }: MCPConnectionFormProps) => {
                   variant="ghost" 
                   size="sm" 
                   className="absolute right-1 top-1/2 transform -translate-y-1/2 h-7 w-7 p-0"
-                  onClick={() => handleCopy("25144b91-de4c-478d-92f0-9d7fa2c3ebf3", 'spaceID')}
+                  onClick={() => handleCopy(realSpaceID, 'spaceID')}
                 >
                   {spaceIDCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                 </Button>
@@ -298,7 +305,7 @@ export const MCPConnectionForm = ({ onContinue }: MCPConnectionFormProps) => {
               <div className="relative">
                 <input 
                   type="text" 
-                  value="ddae0dcbe89f0a8289df61bea94ef3beb71c5e52" 
+                  value={maskedAPIKey} 
                   className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 pr-10"
                   readOnly
                 />
@@ -306,7 +313,7 @@ export const MCPConnectionForm = ({ onContinue }: MCPConnectionFormProps) => {
                   variant="ghost" 
                   size="sm" 
                   className="absolute right-1 top-1/2 transform -translate-y-1/2 h-7 w-7 p-0"
-                  onClick={() => handleCopy("ddae0dcbe89f0a8289df61bea94ef3beb71c5e52", 'apiKey')}
+                  onClick={() => handleCopy(realAPIKey, 'apiKey')}
                 >
                   {apiKeyCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                 </Button>
