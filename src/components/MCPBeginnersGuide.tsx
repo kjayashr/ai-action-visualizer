@@ -1,10 +1,11 @@
 
 import React from "react";
-import { ExternalLink, Info, Lightbulb, Book } from "lucide-react";
+import { ExternalLink, Info, Lightbulb, Book, MessageSquare, Check, Slack, FileText } from "lucide-react";
 import { MCPArchitectureDiagram } from "@/components/MCPArchitectureDiagram";
 import { MCPFlowDiagrams } from "@/components/MCPFlowDiagrams";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const MCPBeginnersGuide: React.FC = () => {
   return (
@@ -36,6 +37,237 @@ export const MCPBeginnersGuide: React.FC = () => {
               <li>Works with any AI model that implements the protocol</li>
               <li>Runs locally on your machine - no data sent to third parties</li>
               <li>Open protocol with permissive licensing</li>
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Use Case: Messaging Workflow */}
+      <Card className="border-2 border-purple-200">
+        <CardHeader className="bg-purple-50">
+          <CardTitle className="text-2xl flex items-center gap-2">
+            <MessageSquare className="h-6 w-6 text-purple-600" />
+            Use Case: "Send a Message" Workflow
+          </CardTitle>
+          <CardDescription className="text-purple-700 font-medium">
+            How MCP simplifies messaging across different platforms
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6 pt-6">
+          <div className="bg-purple-50 p-5 rounded-lg border border-purple-100">
+            <h4 className="font-medium text-lg text-purple-800 mb-3">💼 Business Scenario:</h4>
+            <p className="text-gray-700 mb-4">
+              You've built a simple messaging workflow in Fastn. Every tenant (customer) just wants to send a notification like:
+            </p>
+            <div className="bg-white p-3 mb-4 rounded-md border border-gray-200 font-medium text-center">
+              "Hey, your task is overdue!"
+            </div>
+            <p className="text-gray-700 mb-2">
+              But different customers use different messaging tools:
+            </p>
+            
+            <div className="overflow-x-auto mb-4">
+              <table className="min-w-full bg-white rounded-lg overflow-hidden">
+                <thead className="bg-purple-100">
+                  <tr>
+                    <th className="px-4 py-2 text-left text-purple-800">Customer</th>
+                    <th className="px-4 py-2 text-left text-purple-800">Preferred Tool</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-t border-gray-200">
+                    <td className="px-4 py-2">Customer A</td>
+                    <td className="px-4 py-2 flex items-center">
+                      <Slack className="h-4 w-4 mr-2 text-blue-600" />
+                      Slack
+                    </td>
+                  </tr>
+                  <tr className="border-t border-gray-200">
+                    <td className="px-4 py-2">Customer B</td>
+                    <td className="px-4 py-2 flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-purple-600" viewBox="0 0 2228.833 2073.333">
+                        <path fill="#5059c9" d="M1554.637 777.5h575.713c54.391 0 98.483 44.092 98.483 98.483v524.398c0 199.901-162.051 361.952-361.952 361.952h-1.711c-199.901.028-361.975-162.023-361.975-361.923V828.971c-.001-28.427 23.044-51.471 51.442-51.471z"/>
+                        <circle cx="1943.75" cy="440.583" r="233.25" fill="#7b83eb"/>
+                        <g fill="#5059c9"><circle cx="1218.083" cy="336.917" r="336.917"/></g>
+                        <path fill="#7b83eb" d="M1667.323 777.5H717.01c-53.743 1.33-96.257 45.931-95.01 99.676v598.105c-7.505 322.519 247.657 590.16 570.167 598.053 322.51-7.893 577.672-275.534 570.167-598.053V877.176c1.245-53.745-41.268-98.346-95.011-99.676z"/>
+                      </svg>
+                      Microsoft Teams
+                    </td>
+                  </tr>
+                  <tr className="border-t border-gray-200">
+                    <td className="px-4 py-2">Customer C</td>
+                    <td className="px-4 py-2 flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-green-600" viewBox="0 0 448 512">
+                        <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                      </svg>
+                      WhatsApp
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <Tabs defaultValue="without-mcp" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="without-mcp">Without MCP</TabsTrigger>
+              <TabsTrigger value="with-mcp">With Fastn + MCP</TabsTrigger>
+            </TabsList>
+            <TabsContent value="without-mcp" className="mt-4 p-4 border border-red-200 bg-red-50 rounded-lg">
+              <h4 className="font-medium text-lg text-red-700 mb-3 flex items-center">
+                <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12 15h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Without MCP - The Challenges:
+              </h4>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start">
+                  <span className="mr-2 inline-block mt-1">🔹</span>
+                  <span>Hardcode logic: <code className="bg-white px-1 py-0.5 rounded border">if customer == A → send_slack()</code></span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2 inline-block mt-1">🔹</span>
+                  <span>Maintain multiple workflows or agents</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2 inline-block mt-1">🔹</span>
+                  <span>Manually manage which customer uses which tool</span>
+                </li>
+              </ul>
+              <p className="mt-4 text-red-700 italic">It gets messy fast, especially as you scale.</p>
+            </TabsContent>
+            <TabsContent value="with-mcp" className="mt-4 p-4 border border-green-200 bg-green-50 rounded-lg">
+              <h4 className="font-medium text-lg text-green-700 mb-3 flex items-center">
+                <Check className="h-5 w-5 mr-2" />
+                With Fastn + MCP + Multitenancy:
+              </h4>
+              <p className="text-gray-700 mb-3 font-medium">
+                You build one single "Send Message" workflow.
+              </p>
+              <p className="text-gray-700 mb-3">
+                Then Fastn does the rest:
+              </p>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start">
+                  <span className="mr-2 inline-block mt-1">✅</span>
+                  <span>MCP automatically loads the right context</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2 inline-block mt-1">✅</span>
+                  <span>Workflow picks the correct integration based on tenant</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2 inline-block mt-1">✅</span>
+                  <span>Message gets delivered to the right channel — no extra logic needed</span>
+                </li>
+              </ul>
+            </TabsContent>
+          </Tabs>
+          
+          <div className="space-y-4">
+            <h4 className="font-medium text-lg text-purple-800 flex items-center gap-2">
+              <FileText className="h-5 w-5" />
+              Behind the Scenes:
+            </h4>
+            <p className="text-gray-700">
+              Each tenant has their own context:
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-gray-900 text-gray-200 p-4 rounded-lg font-mono text-sm overflow-auto">
+                {`{
+  "tenant": "Customer A",
+  "messaging_tool": "slack",
+  "slack_webhook": "https://hooks.slack.com/..."
+}`}
+              </div>
+              
+              <div className="bg-gray-900 text-gray-200 p-4 rounded-lg font-mono text-sm overflow-auto">
+                {`{
+  "tenant": "Customer B",
+  "messaging_tool": "teams",
+  "teams_channel_id": "abc-123"
+}`}
+              </div>
+            </div>
+            
+            <p className="text-gray-700">
+              Your Fastn workflow uses:
+            </p>
+            
+            <div className="bg-gray-900 text-gray-200 p-4 rounded-lg font-mono text-sm overflow-auto">
+              {`SendMessage(tool=MCP.messaging_tool, content="Task is overdue")`}
+            </div>
+            
+            <p className="text-gray-700">
+              Fastn figures out whether it's Slack or Teams using MCP context — you don't change a thing.
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            <h4 className="font-medium text-lg text-purple-800">🧪 Output Example:</h4>
+            
+            <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-4">
+              <div className="flex items-start">
+                <div className="bg-blue-100 text-blue-800 px-2 py-1 rounded font-medium mr-3">
+                  Customer A
+                </div>
+                <div className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Sent to <span className="font-medium">Slack</span>: "Task is overdue!"</span>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="bg-blue-100 text-blue-800 px-2 py-1 rounded font-medium mr-3">
+                  Customer B
+                </div>
+                <div className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Sent to <span className="font-medium">Teams</span>: "Task is overdue!"</span>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="bg-blue-100 text-blue-800 px-2 py-1 rounded font-medium mr-3">
+                  Customer C
+                </div>
+                <div className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" />
+                  <span>Sent via <span className="font-medium">WhatsApp</span>: "Task is overdue!"</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-purple-100 p-4 rounded-lg">
+            <h4 className="font-medium text-lg text-purple-800 mb-3">✨ Why It's Beautiful:</h4>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <li className="flex items-center bg-white p-3 rounded-md shadow-sm">
+                <div className="h-8 w-8 rounded-full bg-purple-200 flex items-center justify-center mr-3">
+                  <span className="text-purple-700 font-medium">1</span>
+                </div>
+                <span className="text-gray-800">One workflow</span>
+              </li>
+              <li className="flex items-center bg-white p-3 rounded-md shadow-sm">
+                <div className="h-8 w-8 rounded-full bg-purple-200 flex items-center justify-center mr-3">
+                  <span className="text-purple-700 font-medium">2</span>
+                </div>
+                <span className="text-gray-800">Zero hardcoding</span>
+              </li>
+              <li className="flex items-center bg-white p-3 rounded-md shadow-sm">
+                <div className="h-8 w-8 rounded-full bg-purple-200 flex items-center justify-center mr-3">
+                  <span className="text-purple-700 font-medium">3</span>
+                </div>
+                <span className="text-gray-800">Context-aware</span>
+              </li>
+              <li className="flex items-center bg-white p-3 rounded-md shadow-sm">
+                <div className="h-8 w-8 rounded-full bg-purple-200 flex items-center justify-center mr-3">
+                  <span className="text-purple-700 font-medium">4</span>
+                </div>
+                <span className="text-gray-800">Fully multitenant out of the box</span>
+              </li>
             </ul>
           </div>
         </CardContent>
