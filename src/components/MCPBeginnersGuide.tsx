@@ -108,18 +108,15 @@ export const MCPBeginnersGuide: React.FC = () => {
             </div>
           </div>
           
-          <Tabs defaultValue="without-mcp" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="without-mcp">Without MCP</TabsTrigger>
-              <TabsTrigger value="with-mcp">With Fastn + MCP</TabsTrigger>
-            </TabsList>
-            <TabsContent value="without-mcp" className="mt-4 p-4 border border-red-200 bg-red-50 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Without MCP - Now called "Multitenancy" */}
+            <div className="p-4 border border-red-200 bg-red-50 rounded-lg">
               <h4 className="font-medium text-lg text-red-700 mb-3 flex items-center">
                 <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   <path d="M12 15h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                Without MCP - The Challenges:
+                Multitenancy Challenges:
               </h4>
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start">
@@ -136,8 +133,10 @@ export const MCPBeginnersGuide: React.FC = () => {
                 </li>
               </ul>
               <p className="mt-4 text-red-700 italic">It gets messy fast, especially as you scale.</p>
-            </TabsContent>
-            <TabsContent value="with-mcp" className="mt-4 p-4 border border-green-200 bg-green-50 rounded-lg">
+            </div>
+            
+            {/* With Fastn + MCP */}
+            <div className="p-4 border border-green-200 bg-green-50 rounded-lg">
               <h4 className="font-medium text-lg text-green-700 mb-3 flex items-center">
                 <Check className="h-5 w-5 mr-2" />
                 With Fastn + MCP + Multitenancy:
@@ -162,8 +161,8 @@ export const MCPBeginnersGuide: React.FC = () => {
                   <span>Message gets delivered to the right channel — no extra logic needed</span>
                 </li>
               </ul>
-            </TabsContent>
-          </Tabs>
+            </div>
+          </div>
           
           <div className="space-y-4">
             <h4 className="font-medium text-lg text-purple-800 flex items-center gap-2">
