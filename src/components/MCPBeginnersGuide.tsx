@@ -1,11 +1,11 @@
-
 import React from "react";
-import { ExternalLink, Info, Lightbulb, Book, MessageSquare, Check, Slack, FileText } from "lucide-react";
+import { ExternalLink, Info, Lightbulb, Book, MessageSquare, Check, Slack, FileText, BarChart } from "lucide-react";
 import { MCPArchitectureDiagram } from "@/components/MCPArchitectureDiagram";
 import { MCPFlowDiagrams } from "@/components/MCPFlowDiagrams";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell } from "@/components/ui/table";
 
 export const MCPBeginnersGuide: React.FC = () => {
   return (
@@ -37,6 +37,114 @@ export const MCPBeginnersGuide: React.FC = () => {
               <li>Works with any AI model that implements the protocol</li>
               <li>Runs locally on your machine - no data sent to third parties</li>
               <li>Open protocol with permissive licensing</li>
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Comparison Table: Fastn.ai vs Others */}
+      <Card className="border-2 border-blue-200">
+        <CardHeader className="bg-blue-50">
+          <CardTitle className="text-2xl flex items-center gap-2">
+            <BarChart className="h-6 w-6 text-blue-600" />
+            Fastn.ai vs Traditional iPaaS Solutions
+          </CardTitle>
+          <CardDescription className="text-blue-700 font-medium">
+            How Fastn.ai (with embedded iPaaS) compares to traditional solutions like Zapier
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="pt-6">
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-blue-50">
+                  <TableHead className="font-semibold text-blue-800">Feature</TableHead>
+                  <TableHead className="font-semibold text-blue-800">Fastn.ai (Embedded iPaaS)</TableHead>
+                  <TableHead className="font-semibold text-blue-800">Others (Zapier)</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell className="font-medium">Multitenancy</TableCell>
+                  <TableCell className="text-green-600">✓ Built-in, true multitenancy</TableCell>
+                  <TableCell className="text-red-600">✗ Each user manages own</TableCell>
+                </TableRow>
+                
+                <TableRow>
+                  <TableCell className="font-medium">White-labeling</TableCell>
+                  <TableCell className="text-green-600">✓ Full brand control</TableCell>
+                  <TableCell className="text-red-600">✗ Zapier branding visible</TableCell>
+                </TableRow>
+                
+                <TableRow>
+                  <TableCell className="font-medium">Scalability</TableCell>
+                  <TableCell className="text-green-600">✓ Enterprise-ready</TableCell>
+                  <TableCell className="text-red-600">✗ Scales poorly across tenants</TableCell>
+                </TableRow>
+                
+                <TableRow>
+                  <TableCell className="font-medium">SDK / Developer Tools</TableCell>
+                  <TableCell className="text-green-600">✓ SDKs & APIs available</TableCell>
+                  <TableCell className="text-green-600">✓ Dev platform, but limited embedding</TableCell>
+                </TableRow>
+                
+                <TableRow>
+                  <TableCell className="font-medium">Pricing Model</TableCell>
+                  <TableCell className="text-green-600">✓ SaaS-facing, usage-based</TableCell>
+                  <TableCell className="text-red-600">✗ End-user pricing, can get expensive</TableCell>
+                </TableRow>
+                
+                <TableRow>
+                  <TableCell className="font-medium">API Access</TableCell>
+                  <TableCell className="text-green-600">✓ Full integration control</TableCell>
+                  <TableCell className="text-green-600">✓ Partial API access</TableCell>
+                </TableRow>
+                
+                <TableRow>
+                  <TableCell className="font-medium">Ease of Integration</TableCell>
+                  <TableCell className="text-green-600">✓ Drop-in embeddable UI</TableCell>
+                  <TableCell className="text-red-600">✗ Separate Zapier account/UI</TableCell>
+                </TableRow>
+                
+                <TableRow>
+                  <TableCell className="font-medium">Data Residency & Compliance</TableCell>
+                  <TableCell className="text-green-600">✓ Flexible & compliant</TableCell>
+                  <TableCell className="text-red-600">✗ No regional control</TableCell>
+                </TableRow>
+                
+                <TableRow>
+                  <TableCell className="font-medium">Analytics & Monitoring</TableCell>
+                  <TableCell className="text-green-600">✓ Centralized observability</TableCell>
+                  <TableCell className="text-red-600">✗ Minimal usage insights</TableCell>
+                </TableRow>
+                
+                <TableRow>
+                  <TableCell className="font-medium">Support</TableCell>
+                  <TableCell className="text-green-600">✓ Dedicated onboarding & support</TableCell>
+                  <TableCell className="text-red-600">✗ Self-service only</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
+          
+          <div className="mt-6 bg-blue-50 p-4 rounded-lg border border-blue-100">
+            <h4 className="font-medium flex items-center gap-2 mb-2 text-blue-800">
+              <Lightbulb className="h-5 w-5 text-blue-600" />
+              Why Choose Fastn.ai for Your SaaS:
+            </h4>
+            <ul className="list-disc pl-5 space-y-2 text-gray-700">
+              <li>
+                <span className="font-medium">Built for Multi-tenant SaaS:</span> Unlike traditional iPaaS solutions that require each end user to manage their own instance, Fastn.ai is designed specifically for SaaS companies needing to manage integrations across all their customers.
+              </li>
+              <li>
+                <span className="font-medium">White-labeled Experience:</span> Present a seamless, branded integration experience to your customers without third-party branding interference.
+              </li>
+              <li>
+                <span className="font-medium">Enterprise-grade Scalability:</span> As your customer base grows, Fastn.ai scales efficiently without the overhead of managing individual integration accounts.
+              </li>
+              <li>
+                <span className="font-medium">Cost-effective:</span> Pricing aligned with SaaS business models prevents integration costs from eating into your margins as you scale.
+              </li>
             </ul>
           </div>
         </CardContent>
